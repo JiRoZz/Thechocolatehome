@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="EN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --choc:#5C1A1A;
+  --choc-dark:#3A0F0F;
+  --choc-mid:#8B3A3A;
+  --choc-light:#F5EBE0;
+  --choc-cream:#FDF6EE;
+  --gold:#C9932A;
+  --text:#1A1A1A;
+  --muted:#6B5C5C;
+}
+body{font-family:'Kantumruy Pro',sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
+.khmer{font-family:'Battambang',serif}
+.material-icons{font-family:'Material Icons';font-weight:normal;font-style:normal;font-size:18px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-flex;align-items:center;justify-content:center;word-wrap:normal;white-space:nowrap;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{background:var(--choc-dark);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.3)}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px}
+.nav-logo{display:flex;align-items:center;gap:12px}
+  .nav-logo-icon{width:44px;height:44px;background:var(--choc);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid var(--gold);overflow:hidden}
+  .nav-logo-icon img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+.nav-brand{color:#fff}
+.nav-brand-en{font-size:14px;font-weight:600;letter-spacing:1px;color:var(--gold)}
+.nav-brand-km{font-family:'Battambang',serif;font-size:13px;color:#ddd}
+.nav-links{display:flex;gap:4px}
+.nav-links a{color:#ddd;text-decoration:none;padding:8px 14px;border-radius:6px;font-size:13px;transition:all .2s}
+.nav-links a:hover{background:var(--choc);color:#fff}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--choc-dark);z-index:99;padding:16px;flex-direction:column;gap:4px}
+.mobile-menu a{color:#ddd;text-decoration:none;padding:12px 16px;border-radius:6px;font-size:15px;display:block}
+.mobile-menu a:hover{background:var(--choc);color:#fff}
+.mobile-menu.open{display:flex}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--choc-dark) 0%,var(--choc) 50%,#8B1A1A 100%);min-height:90vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-inner{max-width:1100px;margin:0 auto;padding:60px 24px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;width:100%}
+.hero-text{position:relative;z-index:2}
+.hero-badge{display:inline-block;background:rgba(201,147,42,0.2);border:1px solid var(--gold);color:var(--gold);padding:6px 16px;border-radius:20px;font-size:12px;letter-spacing:1px;margin-bottom:20px}
+.hero-km{font-family:'Battambang',serif;font-size:clamp(32px,6vw,56px);color:#fff;line-height:1.3;margin-bottom:8px}
+.hero-en{font-size:clamp(20px,3vw,32px);color:var(--gold);font-weight:600;margin-bottom:20px;letter-spacing:2px}
+.hero-desc-km{font-family:'Battambang',serif;font-size:16px;color:rgba(255,255,255,0.8);line-height:2;margin-bottom:8px}
+.hero-desc-en{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:#fff;padding:13px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;transition:.2s;border:none;cursor:pointer}
+.btn-primary:hover{background:#a87820}
+.btn-outline{border:2px solid rgba(255,255,255,0.5);color:#fff;padding:13px 28px;border-radius:8px;text-decoration:none;font-size:14px;transition:.2s}
+.btn-outline:hover{background:rgba(255,255,255,0.1)}
+.hero-visual{display:flex;justify-content:center;align-items:center;position:relative;z-index:2}
+.hero-image-card{width:100%;max-width:520px;border-radius:32px;overflow:hidden;box-shadow:0 35px 90px rgba(0,0,0,.2);background:#fff;position:relative}
+.hero-image-card img{width:100%;height:auto;display:block;object-fit:cover}
+.hero-image-badge{position:absolute;top:18px;left:18px;background:rgba(255,255,255,0.95);color:var(--choc-dark);font-weight:700;padding:10px 18px;border-radius:999px;font-size:12px;letter-spacing:.8px;box-shadow:0 18px 35px rgba(0,0,0,.16)}
+.hero-image-overlay{position:absolute;left:0;right:0;bottom:0;padding:24px;background:linear-gradient(180deg,transparent,rgba(26,11,7,.95));color:#fff}
+.hero-image-overlay h3{margin:0;font-size:24px;font-weight:700;line-height:1.1}
+.hero-image-overlay p{margin:12px 0 0;font-size:14px;line-height:1.8;color:rgba(255,255,255,.88)}
+.logo-km-text{font-size:16px;color:var(--choc-dark);font-weight:700;margin-top:4px}
+.logo-en-text{font-size:12px;color:var(--choc-mid);letter-spacing:1px}
+
+/* SECTION BASE */
+section{padding:80px 0}
+.section-inner{max-width:1100px;margin:0 auto;padding:0 24px}
+.section-header{text-align:center;margin-bottom:52px}
+.section-label{font-size:12px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.section-title-km{font-family:'Battambang',serif;font-size:32px;color:var(--choc-dark);margin-bottom:4px}
+.section-title-en{font-size:22px;font-weight:600;color:var(--choc);margin-bottom:16px}
+.section-divider{width:60px;height:3px;background:var(--gold);margin:0 auto;border-radius:2px}
+
+/* ABOUT */
+.about{background:var(--choc-cream)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-text .tag{display:inline-block;background:rgba(92,26,26,0.1);color:var(--choc);padding:4px 14px;border-radius:20px;font-size:12px;margin-bottom:16px}
+.about-text h3.km{font-family:'Battambang',serif;font-size:24px;color:var(--choc-dark);margin-bottom:4px}
+.about-text h3.en{font-size:18px;color:var(--choc);font-weight:600;margin-bottom:16px}
+.about-text p{font-size:14px;color:var(--muted);line-height:2;margin-bottom:12px}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.about-feat{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(92,26,26,0.1)}
+.about-feat-icon{font-size:24px;margin-bottom:8px}
+.about-feat-km{font-family:'Battambang',serif;font-size:14px;color:var(--choc-dark);font-weight:700}
+.about-feat-en{font-size:12px;color:var(--muted)}
+.about-img-wrap{position:relative}
+.about-img-box{background:var(--choc);border-radius:20px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.about-img-placeholder{display:flex;flex-direction:column;align-items:center;gap:12px;color:rgba(255,255,255,0.7)}
+.about-img-placeholder .big{font-size:64px}
+.about-badge{position:absolute;bottom:-20px;right:-20px;background:var(--gold);color:#fff;border-radius:16px;padding:16px 20px;text-align:center}
+.about-badge-num{font-size:28px;font-weight:700;display:block}
+.about-badge-text{font-size:11px;opacity:.9}
+
+/* PRODUCTS */
+.products{background:#fff}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.product-card{border-radius:16px;overflow:hidden;border:1px solid rgba(92,26,26,0.1);transition:.3s;cursor:pointer}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(92,26,26,0.15)}
+
+/* CERTIFICATE */
+.certificate{background:#f9f2e8}
+.certificate-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.certificate-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,0.06);border:1px solid rgba(92,26,26,0.08)}
+.certificate-image{width:100%;height:180px;object-fit:cover;display:block}
+.certificate-body{padding:24px}
+.certificate-icon{font-size:28px;color:var(--choc);margin-bottom:14px;display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:18px;background:rgba(201,147,42,0.12)}
+.certificate-title-km{font-family:'Battambang',serif;font-size:16px;color:var(--choc-dark);margin-bottom:8px}
+.certificate-title-en{font-size:14px;color:var(--choc-mid);margin-bottom:12px}
+.certificate-text{font-size:13px;color:var(--muted);line-height:1.8}
+
+.product-img{height:220px;display:flex;align-items:center;justify-content:center;font-size:80px;position:relative;overflow:hidden}
+.product-img .product-emoji{filter:drop-shadow(0 4px 8px rgba(0,0,0,0.2));position:relative;z-index:2;color:#fff}
+.product-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.product-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%);z-index:1}
+.product-badge{position:absolute;top:12px;right:12px;background:var(--gold);color:#fff;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:600;z-index:2}
+.product-body{padding:20px}
+.product-name-km{font-family:'Battambang',serif;font-size:18px;color:var(--choc-dark);margin-bottom:2px}
+.product-name-en{font-size:14px;color:var(--choc-mid);margin-bottom:12px}
+.product-desc-km{font-family:'Battambang',serif;font-size:13px;color:var(--muted);line-height:2;margin-bottom:8px}
+.product-desc-en{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+.product-footer{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(92,26,26,0.08)}
+.product-size{font-size:12px;color:var(--muted)}
+.product-tag{background:rgba(92,26,26,0.08);color:var(--choc);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600}
+
+/* WHY CHOOSE */
+.why{background:var(--choc-dark);color:#fff}
+.why .section-title-km{color:#fff}
+.why .section-title-en{color:var(--gold)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+.why-card{text-align:center;padding:32px 20px;background:rgba(255,255,255,0.05);border-radius:16px;border:1px solid rgba(255,255,255,0.1)}
+.why-icon{font-size:40px;margin-bottom:16px}
+.why-title-km{font-family:'Battambang',serif;font-size:16px;color:#fff;margin-bottom:4px}
+.why-title-en{font-size:13px;color:var(--gold);margin-bottom:12px}
+.why-text-km{font-family:'Battambang',serif;font-size:13px;color:rgba(255,255,255,0.6);line-height:2}
+.why-text-en{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.7;margin-top:4px}
+
+/* CONTACT */
+.contact{background:var(--choc-cream)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.contact-info h3.km{font-family:'Battambang',serif;font-size:22px;color:var(--choc-dark);margin-bottom:4px}
+.contact-info h3.en{font-size:16px;color:var(--choc-mid);margin-bottom:24px}
+.contact-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px}
+.contact-item-icon{width:44px;height:44px;background:var(--choc);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;color:#fff}
+.contact-item-icon span,
+.contact-item-icon svg{color:#fff;fill:#fff}
+.contact-item-text-km{font-family:'Battambang',serif;font-size:14px;color:var(--choc-dark);font-weight:700}
+.contact-item-text-en{font-size:13px;color:var(--muted)}
+.contact-map{background:var(--choc-dark);border-radius:16px;overflow:hidden;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);gap:12px;border:2px dashed rgba(201,147,42,0.3)}
+.contact-map-icon{font-size:48px}
+.contact-map-km{font-family:'Battambang',serif;font-size:16px;color:var(--gold)}
+.contact-map-en{font-size:13px;color:rgba(255,255,255,0.5)}
+.social-links{display:flex;gap:12px;margin-top:24px}
+.social-btn{display:flex;align-items:center;gap:8px;background:var(--choc);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:13px;transition:.2s}
+.social-btn:hover{background:var(--choc-dark)}
+
+/* FOOTER */
+footer{background:var(--choc-dark);color:rgba(255,255,255,0.7);text-align:center;padding:40px 24px}
+.footer-logo-km{font-family:'Battambang',serif;font-size:22px;color:#fff;margin-bottom:4px}
+.footer-logo-en{font-size:14px;color:var(--gold);letter-spacing:1px;margin-bottom:16px}
+.footer-divider{width:60px;height:1px;background:rgba(255,255,255,0.2);margin:16px auto}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.4)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-inner{padding:0 16px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-inner{grid-template-columns:1fr;text-align:center;gap:28px}
+  .hero-visual{order:-1}
+  .hero-image-card{max-width:420px}
+  .hero-btns{flex-direction:column;align-items:center;justify-content:center}
+  .btn-primary,.btn-outline{width:100%;max-width:320px;justify-content:center}
+  .btn-primary{padding:13px 18px}
+  .btn-outline{padding:13px 18px}
+  .hero-text{padding:0 8px}
+  .hero-desc-km,.hero-desc-en{font-size:15px}
+  .section-inner{padding:0 16px}
+  .section-header{margin-bottom:40px}
+  .about-grid{grid-template-columns:1fr}
+  .about-img-wrap{display:none}
+  .about-features{grid-template-columns:1fr 1fr}
+  .certificate-grid{grid-template-columns:repeat(2,minmax(220px,1fr))}
+  .contact-grid{grid-template-columns:1fr}
+  .contact-map{min-height:240px}
+  .products-grid{grid-template-columns:repeat(2,minmax(220px,1fr))}
+  .social-links{flex-direction:column;gap:12px}
+  .product-card{margin:0 auto}
+  .product-body{padding:18px}
+  section{padding:52px 0}
+}
+@media(max-width:560px){
+  .certificate-grid{grid-template-columns:1fr}
+  .products-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero-inner{gap:20px}
+  .nav-inner{height:auto;padding:12px 16px}
+  .nav-logo-icon{width:38px;height:38px}
+  .nav-brand-en{font-size:12px}
+  .hero-km{font-size:28px}
+  .hero-en{font-size:22px}
+  .hero-desc-km,.hero-desc-en{font-size:14px}
+  .hero-btns{gap:10px}
+  .btn-primary,.btn-outline{max-width:100%;padding:12px 16px}
+  .about-features{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .contact-map{min-height:220px}
+  .section-header{margin-bottom:32px}
+  .product-body{padding:16px}
+  .contact-item{gap:12px}
+  .social-links{gap:10px}
+  .footer{padding:32px 16px}
+ 
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-icon"><img src="./photo_2026-06-10_10-26-30.jpg" alt="The Chocolate Home logo"></div>
+      <div class="nav-brand">
+        <div class="nav-brand-en">ផ្ទះសូកូឡាំ</div>
+        <div class="nav-brand-km">THE CHOCOLATE HOME</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#home">ទំព័រដើម / Home</a>
+      <a href="#about">អំពីយើង / About</a>
+      <a href="#products">ផលិតផល / Products</a>
+      <a href="#certificate">វិញ្ញាបនប័ត្រ / Certificate</a>
+      <a href="#why">គុណភាព / Quality</a>
+      <a href="#contact">ទំនាក់ទំនង / Contact</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMenu()"><span class="material-icons">home</span> ទំព័រដើម / Home</a>
+  <a href="#about" onclick="closeMenu()"><span class="material-icons">home</span> អំពីយើង / About</a>
+  <a href="#products" onclick="closeMenu()"><span class="material-icons">local_cafe</span> ផលិតផល / Products</a>
+  <a href="#certificate" onclick="closeMenu()"><span class="material-icons">badge</span> វិញ្ញាបនប័ត្រ / Certificate</a>
+  <a href="#why" onclick="closeMenu()"><span class="material-icons">star</span> គុណភាព / Quality</a>
+  <a href="#contact" onclick="closeMenu()"><span class="material-icons">call</span> ទំនាក់ទំនង / Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <!-- <div class="hero-badge"><span class="material-icons">local_cafe</span> CAMBODIA'S PREMIUM BEVERAGE BRAND</div> -->
+      <h1 class="hero-km khmer">ផ្ទះសូកូឡាំ</h1>
+      <h2 class="hero-en">The Chocolate Home</h2>
+      <p class="hero-desc-km khmer">យើងផ្តល់ជូននូវគ្រឿងផ្សំភេសជ្ជៈ<br>ដែលមានគុណភាពខ្ពស់ ១០០%</p>
+      <p class="hero-desc-en">Premium quality beverage ingredients — coffee, tea, cacao & more.<br>Sourced with care, crafted for your business.</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-primary"><span class="material-icons">shopping_bag</span> មើលផលិតផល / View Products</a>
+        <a href="#contact" class="btn-outline"><span class="material-icons">call</span> ទំនាក់ទំនង / Contact Us</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-image-card">
+        <img src="./SWC 9X10=10karea T.jpg" alt="Cacao powder product">
+        <div class="hero-image-badge">Best Seller</div>
+        <div class="hero-image-overlay">
+          <h3>Cacao Powder — 500g</h3>
+          <p>Rich, premium cacao powder crafted for coffee shops, desserts, and premium beverages. Add a touch of Cambodia to every cup.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">About Us</div>
+      <h2 class="section-title-km khmer">អំពីក្រុមហ៊ុនយើង</h2>
+      <h3 class="section-title-en">Who We Are</h3>
+      <div class="section-divider"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="tag">Made in Cambodia</div>
+        <h3 class="km khmer">ម៉ាករបស់យើង</h3>
+        <h3 class="en">Our Brand Story</h3>
+        <p class="khmer" style="font-family:'Battambang',serif;font-size:14px;line-height:2.2;color:#6B5C5C">ផ្ទះសូកូឡាំ គឺជាក្រុមហ៊ុនផ្គត់ផ្គង់គ្រឿងផ្សំភេសជ្ជៈ នៅប្រទេសកម្ពុជា។ យើងមានផលិតផលសម្រាប់អ្នកដំណើរការភោជនីយដ្ឋាន ហាងកាហ្វេ និងអ្នកប្រើប្រាស់ទូទៅ។</p>
+        <p style="font-size:13px;line-height:1.9;color:#6B5C5C;margin-top:8px">The Chocolate Home is a premium beverage ingredient supplier based in Cambodia. We provide high-quality powders, coffee, and tea for cafes, restaurants, and households. Our products are carefully sourced to meet the highest standards.</p>
+        <div class="about-features">
+          <div class="about-feat">
+            <div class="about-feat-icon"><div class="ab-img"><img src="./SWC 9X10=10karea T.jpg" alt=""></div></div>
+            <div class="about-feat-km khmer">ផលិតផលធម្មជាតិ</div>
+            <div class="about-feat-en">100% Natural</div>
+          </div>
+          <div class="about-feat">
+            <div class="about-feat-icon"><span class="material-icons">check_circle</span></div>
+            <div class="about-feat-km khmer">គ្មានជាតិថែម</div>
+            <div class="about-feat-en">No Additives</div>
+          </div>
+          <div class="about-feat">
+            <div class="about-feat-icon"><span class="material-icons">local_shipping</span></div>
+            <div class="about-feat-km khmer">ដឹកជញ្ជូនរហ័ស</div>
+            <div class="about-feat-en">Fast Delivery</div>
+          </div>
+          <div class="about-feat">
+            <div class="about-feat-icon"><span class="material-icons">attach_money</span></div>
+            <div class="about-feat-km khmer">តម្លៃសមរម្យ</div>
+            <div class="about-feat-en">Best Price</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-img-wrap">
+        <div class="about-img-box">
+          <div style="text-align:center;color:rgba(255,255,255,0.8)">
+            <div style="font-size:72px"><span class="material-icons" style="font-size:72px">local_cafe</span></div>
+            <div style="font-family:'Battambang',serif;font-size:16px;margin-top:12px">ផ្ទះសូកូឡាំ</div>
+            <div style="font-size:13px;opacity:.7;margin-top:4px">Premium Beverage Ingredients</div>
+          </div>
+        </div>
+        <div class="about-badge">
+          <span class="about-badge-num">100%</span>
+          <span class="about-badge-text">Quality<br>Guaranteed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Our Products</div>
+      <h2 class="section-title-km khmer">ផលិតផលរបស់យើង</h2>
+      <h3 class="section-title-en">Premium Beverage Ingredients</h3>
+      <div class="section-divider"></div>
+    </div>
+    <div class="products-grid">
+
+      <div class="product-card" style="background:linear-gradient(180deg,#FFF5F0 0%,#fff 60%)">
+        <div class="product-img" style="background:linear-gradient(135deg,#7B3B2A,#C4622D)">
+          <img class="product-image" src="./SWC 9X10=10karea T.jpg" alt="Cacao Powder">
+          <!-- <span class="product-emoji"><span class="material-icons">local_cafe</span></span> -->
+          <div class="product-badge">500g</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name-km khmer">ម្សៅកាកាវ</div>
+          <div class="product-name-en">Cacao Powder</div>
+          <p class="product-desc-km khmer">ម្សៅកាកាវ ១០០% ខ្យាំ ល្អ ជ្រើសរើសពីគ្រឿងធម្មជាតិ</p>
+          <p class="product-desc-en">Rich 100% pure cacao powder. Perfect for hot chocolate drinks, baking, and café beverages.</p>
+          <div class="product-footer">
+            <span class="product-size"> 500g per pack</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" style="background:linear-gradient(180deg,#F0F7F0 0%,#fff 60%)">
+        <div class="product-img" style="background:linear-gradient(135deg,#1A5C2A,#2E8B4A)">
+          <img class="product-image" src="./SWC 9X10=10karea Y.jpg" alt="Matcha Green Tea Powder">
+          <!-- <span class="product-emoji"><span class="material-icons">spa</span></span> -->
+          <div class="product-badge">100g</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name-km khmer">ម្សៅម៉ាត្ចា ១០០%</div>
+          <div class="product-name-en">100% Matcha Green Tea Powder</div>
+          <p class="product-desc-km khmer">ម្សៅម៉ាត្ចាស្ទើរ ១០០% ពីប្រទេសជប៉ុន ស្រស់ ឈ្ងុយ</p>
+          <p class="product-desc-en">Premium ceremonial-grade matcha. Vibrant green color, rich umami flavor for lattes and desserts.</p>
+          <div class="product-footer">
+            <span class="product-size"> 100g per pack</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" style="background:linear-gradient(180deg,#F5FFF5 0%,#fff 60%)">
+        <div class="product-img" style="background:linear-gradient(135deg,#2D7A2D,#52B852)">
+          <img class="product-image" src="./SWC 9X10=karea C.jpg" alt="Green Tea Leaf">
+          <!-- <span class="product-emoji"><span class="material-icons">eco</span></span> -->
+          <div class="product-badge">400g</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name-km khmer">តែបៃតង</div>
+          <div class="product-name-en">Green Tea (Leaf)</div>
+          <p class="product-desc-km khmer">ស្លឹកតែបៃតងស្រស់ ទំលាប់ប្រពៃណី ដែលមានរសជាតិឆ្ងាញ់</p>
+          <p class="product-desc-en">Traditional whole-leaf green tea. Refreshing taste, perfect for iced bubble tea and hot brews.</p>
+          <div class="product-footer">
+            <span class="product-size"> 400g per pack</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" style="background:linear-gradient(180deg,#FFF8F0 0%,#fff 60%)">
+        <div class="product-img" style="background:linear-gradient(135deg,#5C3A1E,#8B5E3C)">
+          <img class="product-image" src="./SWC 9X10=10karea P.jpg" alt="Black Coffee Robusta">
+          <!-- <span class="product-emoji"><span class="material-icons">local_cafe</span></span> -->
+          <div class="product-badge">500g</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name-km khmer">កាហ្វេខ្មៅ ១០០%</div>
+          <div class="product-name-en">Black Coffee — Robusta 100%</div>
+          <p class="product-desc-km khmer">កាហ្វេ Robusta ១០០% ជ្រើសរើសពីស្ថានីយ​ ​​ល្អ​ ​​ក្លិនក្រអូប</p>
+          <p class="product-desc-en">Pure Robusta black coffee. Bold, strong flavor with natural aroma. Ideal for serious coffee lovers and cafes.</p>
+          <div class="product-footer">
+            <span class="product-size"> 500g per pack</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" style="background:linear-gradient(180deg,#FFFDF0 0%,#fff 60%)">
+        <div class="product-img" style="background:linear-gradient(135deg,#7A5C1A,#C9932A)">
+          <img class="product-image" src="./SWC 9X10=10karea J.jpg" alt="Durian Coffee">
+          <!-- <span class="product-emoji"><span class="material-icons">local_cafe</span></span> -->
+          <div class="product-badge">500g</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name-km khmer">កាហ្វេទុរេន</div>
+          <div class="product-name-en">Durian Coffee</div>
+          <p class="product-desc-km khmer">ការបញ្ចូលគ្នារវាងកាហ្វេ និងផ្លែទុរេន ។ ជារសជាតិថ្មី ឆ្ងាញ់</p>
+          <p class="product-desc-en">A unique fusion of rich coffee and creamy durian flavor. A one-of-a-kind Cambodian specialty drink.</p>
+          <div class="product-footer">
+            <span class="product-size"> 500g per pack</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" style="background:linear-gradient(180deg,#F5F5FF 0%,#fff 60%)">
+        <div class="product-img" style="background:linear-gradient(135deg,#3A5A8C,#5A7EBF)">
+          <img class="product-image" src="./SWC 9X10=10karea v.jpg" alt="Cream Cheese Powder">
+          <!-- <span class="product-emoji"><span class="material-icons">icecream</span></span> -->
+          <div class="product-badge">1 kg</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name-km khmer">ម្សៅក្រីមឈ្ស</div>
+          <div class="product-name-en">Cream Cheese Powder</div>
+          <p class="product-desc-km khmer">ម្សៅក្រីមឈ្ស គ្រាប់ល្អ ​​​ ផ្អែមឆ្ងាញ់ ។ ល្អបំផុតក្នុងការបន្ថែមលើភេសជ្ជៈ</p>
+          <p class="product-desc-en">Smooth creamy cheese powder topping for bubble tea, coffee drinks, and desserts. 1kg bulk pack.</p>
+          <div class="product-footer">
+            <span class="product-size"> 1 kg per pack</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATE -->
+<section class="certificate" id="certificate">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Certificates</div>
+      <h2 class="section-title-km khmer">វិញ្ញាបនប័ត្រផលិតផល</h2>
+      <h3 class="section-title-en">Product Certifications</h3>
+      <div class="section-divider"></div>
+    </div>
+    <div class="certificate-grid">
+      <div class="certificate-card">
+        <img class="certificate-image" src="./certificate-1.jpg" alt="Certification Document 1">
+        <div class="certificate-body">
+          <div class="certificate-icon"><span class="material-icons">verified</span></div>
+          <div class="certificate-title-km khmer">ធនធានទួលបានវិញ្ញាបនប័ត្រ</div>
+          <div class="certificate-title-en">Certified Ingredients</div>
+          <div class="certificate-text">All product ingredients are certified for quality and safety by trusted local and international labs.</div>
+        </div>
+      </div>
+      <div class="certificate-card">
+        <img class="certificate-image" src="./certificate-2.jpg" alt="Certification Document 2">
+        <div class="certificate-body">
+          <div class="certificate-icon"><span class="material-icons">task_alt</span></div>
+          <div class="certificate-title-km khmer">តេស្តគុណភាពបាន</div>
+          <div class="certificate-title-en">Quality Tested</div>
+          <div class="certificate-text">Each batch goes through strict testing to ensure taste, purity, and consistency before delivery.</div>
+        </div>
+      </div>
+      <div class="certificate-card">
+        <img class="certificate-image" src="./certificate-3.jpg" alt="Certification Document 3">
+        <div class="certificate-body">
+          <div class="certificate-icon"><span class="material-icons">security</span></div>
+          <div class="certificate-title-km khmer">សុវត្ថិភាពសម្រាប់អ្នកប្រើ</div>
+          <div class="certificate-title-en">Safety Approved</div>
+          <div class="certificate-text">Our products meet food safety standards and are suitable for cafes, restaurants, and household use.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why" id="why">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label" style="color:var(--gold)">Why Choose Us</div>
+      <h2 class="section-title-km khmer" style="color:#fff">ហេតុអ្វីបានជាជ្រើសរើសយើង?</h2>
+      <h3 class="section-title-en">Our Promise to You</h3>
+      <div class="section-divider"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><span class="material-icons">verified</span></div>
+        <div class="why-title-km khmer">គ្រឿងធម្មជាតិ</div>
+        <div class="why-title-en">Natural Ingredients</div>
+        <div class="why-text-km khmer">ផលិតផលទាំងអស់ ធ្វើពីធម្មជាតិ ១០០%</div>
+        <div class="why-text-en">All products are made from 100% natural sources with no artificial colors</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><span class="material-icons">verified</span></div>
+        <div class="why-title-km khmer">ត្រូវបានធ្វើតេស្ត</div>
+        <div class="why-title-en">Quality Tested</div>
+        <div class="why-text-km khmer">ផ្ទៀងផ្ទាត់ស្តង់ដារគ្រប់ដំណាក់កាល</div>
+        <div class="why-text-en">Every batch goes through strict quality control before reaching your hands</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><span class="material-icons">local_shipping</span></div>
+        <div class="why-title-km khmer">ដឹកជញ្ជូនទូទាំងប្រទេស</div>
+        <div class="why-title-en">Nationwide Delivery</div>
+        <div class="why-text-km khmer">ដឹកជញ្ជូនដល់ទូទាំងប្រទេសកម្ពុជា</div>
+        <div class="why-text-en">We deliver across all provinces in Cambodia quickly and safely</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><span class="material-icons">business_center</span></div>
+        <div class="why-title-km khmer">ជំនួយអ្នកជំនួញ</div>
+        <div class="why-title-en">Business Support</div>
+        <div class="why-text-km khmer">ជួយអ្នកចាប់ផ្តើមអាជីវកម្ម ហាងកាហ្វេ</div>
+        <div class="why-text-en">We support cafe owners and entrepreneurs with recipes and guidance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title-km khmer">ទំនាក់ទំនងយើង</h2>
+      <h3 class="section-title-en">Get In Touch</h3>
+      <div class="section-divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3 class="km khmer">ព័ត៌មានទំនាក់ទំនង</h3>
+        <h3 class="en">Contact Information</h3>
+
+        <div class="contact-item">
+          <div class="contact-item-icon"><span class="material-icons">call</span></div>
+          <div>
+            <div class="contact-item-text-km khmer">លេខទូរស័ព្ទ</div>
+            <div class="contact-item-text-en">085 25 8888 / 012 21 18 29 / 097 402 98 98</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><span class="material-icons">location_on</span></div>
+          <div>
+            <div class="contact-item-text-km khmer">ទីតាំង — បាត់ដំបង Battambang, កម្ពុជា</div>
+            <div class="contact-item-text-en">Battambang, Cambodia</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><span class="material-icons">access_time</span></div>
+          <div>
+            <div class="contact-item-text-km khmer">ម៉ោងបម្រើ: ០៧:០០ - ២០:០០</div>
+            <div class="contact-item-text-en">Open daily: 7:00 AM – 8:00 PM</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.5v-2.9h2.5V9.4c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6v1.9h2.9l-.5 2.9h-2.4V22A10 10 0 0 0 22 12z"/></svg></div>
+          <div>
+            <div class="contact-item-text-km khmer">ទំព័រហ្វេសប៊ុក</div>
+            <div class="contact-item-text-en">Facebook: ផ្ទះកាហ្វេ វ៉ាណក់</div>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <!-- <a href="tel:0852588888" class="social-btn"><span class="material-icons">call</span> Call Now</a> -->
+          <a href="https://www.facebook.com/share/1EX751G6xx/?mibextid=wwXIfr" class="social-btn" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.5v-2.9h2.5V9.4c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6v1.9h2.9l-.5 2.9h-2.4V22A10 10 0 0 0 22 12z"/></svg> Facebook</a>
+          <a href="https://t.me" class="social-btn" target="_blank"><span class="material-icons">send</span> Telegram</a>
+        </div>
+      </div>
+
+      <div class="contact-map">
+        <div class="contact-map-icon"><span class="material-icons">map</span></div>
+        <div class="contact-map-km khmer">ភ្នំពេញ, កម្ពុជា</div>
+        <div class="contact-map-en">Battambang, Cambodia</div>
+        <a href="https://maps.google.com/?q=Battambang+Cambodia" target="_blank" style="background:var(--gold);color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-size:13px;margin-top:8px">
+          <span class="material-icons" style="vertical-align:middle;">location_on</span> Open in Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-km khmer">ផ្ទះសូកូឡាំ</div>
+  <div class="footer-logo-en">THE CHOCOLATE HOME</div>
+  <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:4px"><span class="material-icons" style="vertical-align:middle;font-size:14px;">call</span> 085 25 8888 &nbsp;|&nbsp; 012 21 18 29 &nbsp;|&nbsp; 097 402 98 98</div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">© 2026 The Chocolate Home / ផ្ទះសូកូឡាំ · Battambang, Cambodia · All rights reserved.</div>
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const el=document.querySelector(a.getAttribute('href'));
+    if(el)el.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
